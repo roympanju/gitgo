@@ -9,13 +9,15 @@ import (
 )
 
 const (
-	apiURL = "https://api.gitub.com"
+	apiURL = "https://api.github.com"
 	userEndpoint = "/users/"
 )
 
 type User struct {
 	Login		string		`json:"login"`
 	ID		int		`json:"id"`
+	Repos		int		`json:"public_repos"`
+	Email		string		`json:"email"`
 }
 
 func getUsers(name string) User {
@@ -23,12 +25,15 @@ func getUsers(name string) User {
 	if err != nil {
 		log.Fatalf("Error retrieving data: %s\n", err)
 	}
+	if resp.StatusCode != 200{
+		log.Fatalf("User doesnot exist status: %d\n", resp.StatusCode)
+	}
 
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatalf("Error reading data: %ss\n", err)
+		log.Fatalf("Error reading data: %s\n", err)
 	}
 
 	var user User

@@ -24,6 +24,10 @@ func main() {
 	for _, u := range users {
 		result := getUsers(u)
 		fmt.Println(`username:	`, result.Login)
+		fmt.Println(`id:	`, result.ID)
+		fmt.Println(`Repos:	`, result.Repos)
+		fmt.Println(`Email:	`, result.Email)
+		fmt.Println(`Users:	`,len(users))
 	}
 }
 
