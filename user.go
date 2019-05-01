@@ -2,14 +2,14 @@ package main
 
 import (
 	"encoding/json"
-	"time"
+	//"time"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
 const (
-	apiURl= "https://api.gitub.com"
+	apiURL = "https://api.gitub.com"
 	userEndpoint = "/users/"
 )
 
@@ -24,7 +24,7 @@ func getUsers(name string) User {
 		log.Fatalf("Error retrieving data: %s\n", err)
 	}
 
-	defer.resp.Body.close()
+	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -32,6 +32,7 @@ func getUsers(name string) User {
 	}
 
 	var user User
-	json.Umarshal(body, &user)
+	json.Unmarshal(body, &user)
 
 	return user
+}
