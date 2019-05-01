@@ -1,7 +1,39 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strings"
+
+	flag "github.com/ogier/pflag"
+)
+
+var (
+	user string
+)
 
 func main() {
-	fmt.Println("Hello Roy")
+	fmt.Println("Welcome to the CLI\n")
+	flag.Parse()
+	if flag.NFlag() == 0 {
+		printUsage()
+	}
+	users := strings.Split(user, ",")
+	fmt.Printf("Searching user(s): %s\n", users)
+
+	for _, u := range users {
+		result := getUsers(u)
+		fmt.Println(`username:	`, result.Login)
+	}
+}
+
+func init() {
+	flag.StringVarP(&user, "user", "u", "", "Search Users")
+}
+
+func printUsage() {
+	fmt.Printf("usage: %s [options]\n", os.Args[0])
+	fmt.Println("Options:")
+	flag.PrintDefaults()
+	os.Exit(1)
 }
