@@ -19,7 +19,7 @@ func main() {
 		printUsage()
 	}
 	users := strings.Split(user, ",")
-	fmt.Printf("\nSearching user(s): %s\n\n", users)
+	fmt.Printf("Searching user(s): %s\n\n", users)
 
 	for _, u := range users {
 		result := getUsers(u)
