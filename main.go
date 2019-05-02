@@ -8,9 +8,8 @@ import (
 	flag "github.com/ogier/pflag"
 )
 
-var (
-	user string
-)
+var user string
+
 
 func main() {
 	fmt.Println("\nWelcome to the CLI\n")
@@ -20,15 +19,19 @@ func main() {
 	}
 	users := strings.Split(user, ",")
 	fmt.Printf("Searching user(s): %s\n\n", users)
-
+	i := 1
 	for _, u := range users {
-		result := getUsers(u)
+		result := getUsers(u) 
 		fmt.Println(`username:	`, result.Login)
 		fmt.Println(`id:		`, result.ID)
 		fmt.Println(`url:		`, result.Html_Url)
 		fmt.Println(`Repos:		`, result.Repos)
 		fmt.Println(`Email:		`, result.Email)
 		fmt.Println(`Users:		`,len(users))
+		if len(users) > 1 && i != len(users){
+			fmt.Println("\n Next user ", i)
+		}
+		i = i+1
 	}
 }
 
