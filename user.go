@@ -16,6 +16,7 @@ const (
 type User struct {
 	Login		string		`json:"login"`
 	ID		int		`json:"id"`
+	Html_Url	string		`json:"html_url"`
 	Repos		int		`json:"public_repos"`
 	Email		string		`json:"email"`
 }
