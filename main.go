@@ -43,5 +43,7 @@ func printUsage() {
 	fmt.Printf("usage: %s [options]\n", os.Args[0])
 	fmt.Println("Options:")
 	flag.PrintDefaults()
+	fmt.Println("\nPlease add -u plus urgument(username being searched)")
+	fmt.Println("OR add -user=urgument(username being searched)")
 	os.Exit(1)
 }
