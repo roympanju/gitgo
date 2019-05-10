@@ -10,7 +10,6 @@ import (
 
 var user string
 
-
 func main() {
 	fmt.Println("\nWelcome to the CLI\n")
 	flag.Parse()
@@ -21,17 +20,19 @@ func main() {
 	fmt.Printf("Searching user(s): %s\n\n", users)
 	i := 1
 	for _, u := range users {
-		result := getUsers(u) 
+		result := getUsers(u)
+
+		if len(users) > 1 && i-1 != len(users) {
+			fmt.Println("\n User ", i)
+		}
+
 		fmt.Println(`username:	`, result.Login)
 		fmt.Println(`id:		`, result.ID)
 		fmt.Println(`url:		`, result.Html_Url)
 		fmt.Println(`Repos:		`, result.Repos)
 		fmt.Println(`Email:		`, result.Email)
-		fmt.Println(`Users:		`,len(users))
-		if len(users) > 1 && i != len(users){
-			fmt.Println("\n Next user ", i)
-		}
-		i = i+1
+		//fmt.Println(`Users:		`,len(users))
+		i = i + 1
 	}
 }
 

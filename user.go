@@ -9,16 +9,16 @@ import (
 )
 
 const (
-	apiURL = "https://api.github.com"
+	apiURL       = "https://api.github.com"
 	userEndpoint = "/users/"
 )
 
 type User struct {
-	Login		string		`json:"login"`
-	ID		int		`json:"id"`
-	Html_Url	string		`json:"html_url"`
-	Repos		int		`json:"public_repos"`
-	Email		string		`json:"email"`
+	Login    string `json:"login"`
+	ID       int    `json:"id"`
+	Html_Url string `json:"html_url"`
+	Repos    int    `json:"public_repos"`
+	Email    string `json:"email"`
 }
 
 func getUsers(name string) User {
@@ -26,8 +26,8 @@ func getUsers(name string) User {
 	if err != nil {
 		log.Fatalf("Error retrieving data: %s\n", err)
 	}
-	if resp.StatusCode != 200{
-		log.Fatalf("User doesnot exist status: %d\n", resp.StatusCode)
+	if resp.StatusCode != 200 {
+		log.Fatalf("User doesnot exist exit statut: %d\n", resp.StatusCode)
 	}
 
 	defer resp.Body.Close()
